@@ -3,25 +3,113 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+  --color-indigo-dye: #1A4A79;
+  --color-carolina-blue: #6DA7CE;
+  --color-gold: #D6B551;
+  --color-pearl: #E9DCC0;
+  --color-space-cadet: #1D204D;
+  --color-violet-blue: #444F9F;
+  --color-lavender: #E1E1EB;
+
+  --color-txt: var(--color-space-cadet);
+  --color-background: var(--color-lavender);
+  --color-primary: var(--color-carolina-blue);
+  --color-accent: var(--color-gold);
+
+  --fs-100: clamp(0.65rem, calc(0.76rem + 0.03vw), 0.57rem);
+  --fs-200: clamp(0.78rem, calc(0.84rem + 0.05vw), 0.75rem);
+  --fs-300: clamp(0.94rem, calc(0.92rem + 0.08vw), 0.98rem);
+  --fs-400: clamp(1.13rem, calc(1.06rem + 0.33vw), 1.31rem);
+  --fs-500: clamp(1.35rem, calc(1.21rem + 0.69vw), 1.75rem);
+  --fs-600: clamp(1.62rem, calc(1.37rem + 1.24vw), 2.33rem);
+  --fs-700: clamp(1.94rem, calc(1.54rem + 2.03vw), 3.11rem);
+  --fs-800: clamp(2.33rem, calc(1.7rem + 3.15vw), 4.14rem);
+  --fs-900: clamp(2.8rem, calc(1.85rem + 4.74vw), 5.52rem);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+.fs-100 {
+  font-size: var(--fs-100);
+}
+
+.fs-200 {
+  font-size: var(--fs-200);
+}
+
+.fs-300 {
+  font-size: var(--fs-300);
+}
+
+.fs400 {
+  font-size: var(--fs-400);
+}
+
+.fs-500 {
+  font-size: var(--fs-500);
+}
+
+.fs-600 {
+  font-size: var(--fs-600);
+}
+
+.fs-700 {
+  font-size: var(--fs-700);
+}
+
+.fs-800 {
+  font-size: var(--fs-800);
+}
+
+.fs-900 {
+  font-size: var(--fs-900);
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  color: var(--color-txt);
+  background-color: var(--color-background);
+  font-size: var(--fs-400);
+  line-height: 1.6;
+}
+
+.bg-primary {
+  background-color: var(--color-primary);
+  color: var(--color-lavender);
+}
+
+.bg-secondary {
+  background-color: var(--color-accent);
+  color: var(--color-space-cadet);
+}
+
+.content-grid {
+  --padding-inline: 1rem;
+  --content-max-width: 900px;
+  --breakout-max-width: 1200px;
+
+  --breakout-size: calc((var(--breakout-max-width) - var(--content-max-width)) / 2);
+
+  display: grid;
+  grid-template-columns:
+    [full-width-start] minmax(var(--padding-inline), 1fr) [breakout-start] minmax(0, var(--breakout-size)) [content-start] min(100% - (var(--padding-inline) * 2), var(--content-max-width)) [content-end] minmax(0, var(--breakout-size)) [breakout-end] minmax(var(--padding-inline), 1fr) [full-width-end];
+}
+
+.content-grid> :not(.breakout, .full-width),
+.full-width> :not(.breakout, .full-width) {
+  grid-column: content;
+}
+
+.content-grid>.breakout {
+  grid-column: breakout;
+}
+
+.content-grid>.full-width {
+  grid-column: full-width;
+
+  display: grid;
+  grid-template-columns: inherit;
+}
+
+img.full-width {
+  width: 100%;
+  max-height: 45vh;
+  object-fit: cover;
 }
