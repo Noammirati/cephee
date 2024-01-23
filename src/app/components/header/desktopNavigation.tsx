@@ -1,6 +1,9 @@
+'use client';
+
 import Link from "next/link";
 import Image from "next/image";
 import { farmhouse } from "@/app/fonts/fonts";
+import { useState } from "react";
 
 interface Props {
     links: { href: string; label: string; }[],
@@ -8,11 +11,30 @@ interface Props {
 
 export default function DesktopNavigation(props: Props) {
 
-    const navLink = (link: { href: string, label: string }) => {
+    const NavLink = (link: { href: string, label: string }) => {
+        const [hover, setHover] = useState(false);
+        const onMouseEnter = () => setHover(true);
+        const onMouseLeave = () => setHover(false);
         return (
-            <li>
-                <Link href={link.href}>{link.label}</Link>
-            </li>
+            <li
+                onMouseEnter={onMouseEnter}
+                onMouseLeave={onMouseLeave}
+            >
+                <Link className="relative z-10 p-2" href={link.href}>
+                    <span className="">
+                        {link.label}
+                    </span>
+                    {hover && <Image
+                        className="absolute top-[-75%] left-0 z-[-1]"
+                        src='/stars.png'
+                        alt='background image'
+                        width={233}
+                        height={200}
+                    />}
+                </Link>
+
+
+            </li >
         )
     }
 
@@ -33,12 +55,15 @@ export default function DesktopNavigation(props: Props) {
         </li>)
     }
 
-    const listLinks = props.links.map((link) => navLink(link));
-    listLinks.splice((listLinks.length / 2) + 1, 0, mainLink())
-
     return (
-        <ul className="DesktopNavigation fs-300 flex gap-4 h-full items-center justify-around capitalize">
-            {listLinks}
+        <ul className="DesktopNavigation fs-300 h-full grid grid-cols-3 items-center capitalize ">
+            <div className="flex">
+                {props.links.slice(0, (props.links.length / 2) + 1).map((link: { href: string; label: string; }) => NavLink(link))}
+            </div>
+            {mainLink()}
+            <div className="flex">
+                {props.links.slice((props.links.length / 2) + 1, props.links.length).map((link: { href: string; label: string; }) => NavLink(link))}
+            </div>
         </ul>
     )
 }

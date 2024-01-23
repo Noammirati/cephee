@@ -1,21 +1,21 @@
 'use client';
 
-import { useLayoutEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useState } from "react";
 import DesktopNavigation from "./desktopNavigation";
 import MobileNavigation from "./mobileNavigation";
 
 export default function Header() {
-    const isMobileQuery = window.matchMedia('(max-width: 35em)');
-    const [isMobile, setIsMobile] = useState(isMobileQuery.matches);
+    const [isMobile, setIsMobile] = useState(true);
 
     useLayoutEffect(() => {
         function updateSize() {
+            const isMobileQuery = window.matchMedia('(max-width: 35em)');
             setIsMobile(isMobileQuery.matches);
         }
         window.addEventListener('resize', updateSize);
         updateSize();
         return () => window.removeEventListener('resize', updateSize);
-    }, [isMobileQuery.matches, setIsMobile]);
+    }, [setIsMobile]);
 
     const links = [
         {
@@ -47,8 +47,6 @@ export default function Header() {
             label: 'Nous contacter',
         },
     ];
-
-    console.log(isMobileQuery)
 
     return (
         <header className='w-full p-2 bg-primary'>
