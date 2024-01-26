@@ -3,7 +3,7 @@ import ScrapbookGrid from "./components/scrapbook/ScrapbookGrid";
 
 function Home() {
   return (
-    <main className="grid-content p-4">
+    <main className="content-grid py-12">
       <h1 className={farmhouse.className}>Céphée</h1>
       <h2 className={spoul.className}>Spoul</h2>
       <p>

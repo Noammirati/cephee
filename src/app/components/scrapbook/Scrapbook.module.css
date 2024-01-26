@@ -1,53 +1,78 @@
 .scrapbookgrid {
-  --verticalPadding: 2rem;
-  --overlap: 6rem;
-
   display: grid;
-  grid-template-columns: 3fr 2fr 1fr 1fr 1fr 3fr;
+  grid-template-columns:
+    [fig1-start]
+    9fr
+    [portrait-start]
+    12fr
+    [fig2-start]
+    1fr
+    [deco-start]
+    4fr
+    [portrait-end]
+    1fr
+    [fig1-end]
+    6fr
+    [deco-end]
+    9fr
+    [fig2-end];
+
   grid-template-rows:
     [deco-start]
-    minmax(var(--verticalPadding), auto)
+    minmax(0, 1rem)
     [portrait-start]
-    minmax(var(--verticalPadding), auto)
+    minmax(3rem, 6rem)
     [fig2-start]
-    minmax(var(--verticalPadding), auto)
+    minmax(2rem, 4rem)
     [deco-end]
-    minmax(var(--verticalPadding), auto)
+    minmax(2rem, 4rem)
     [fig1-start]
-    minmax(var(--verticalPadding), auto)
+    minmax(1rem, 2rem)
     [portrait-end]
-    minmax(var(--verticalPadding), auto)
+    minmax(9rem, 18rem)
     [fig2-end]
-    minmax(var(--verticalPadding), auto)
+    minmax(6rem, 12rem)
     [fig1-end];
-
-  gap: 1rem;
-}
-
-.scrapbookgrid > * {
-  border: 2px solid green;
 }
 
 .fig1 {
-  grid-column: 1 / span 3;
-  grid-row: fig1;
-  min-height: 24rem;
+  grid-area: fig1;
+  z-index: -3;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
 .fig2 {
-  grid-column: 3 / span 4;
-  grid-row: fig2;
-  min-height: 24rem;
+  grid-area: fig2;
+  z-index: -2;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
 .portrait {
-  grid-column: 2 / span 3;
-  grid-row: portrait;
+  position: relative;
+  grid-area: portrait;
+  min-height: 75%;
+
   aspect-ratio: 1;
+  border-radius: 50%;
+  box-shadow: rgb(0, 0, 0) -5px -5px 30px 40px inset,
+    rgba(0, 0, 0, 0.35) 0px 5px 15px;
+
+  overflow: hidden;
+}
+
+.portrait__content {
+  position: absolute;
+  z-index: -1;
+}
+
+.portrait__frame {
+  position: absolute;
+  z-index: 50;
 }
 
 .deco {
-  grid-column: 4 / span 2;
-  grid-row: deco;
+  z-index: 100;
+  grid-area: deco;
+  min-height: 75%;
   aspect-ratio: 1;
 }
