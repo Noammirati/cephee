@@ -1,7 +1,7 @@
 import { farmhouse, spoul } from "@/app/fonts/fonts";
 import ScrapbookGrid from "./components/scrapbook/ScrapbookGrid";
 
-export default function Home() {
+function Home() {
   return (
     <main className="grid-content p-4">
       <h1 className={farmhouse.className}>Céphée</h1>
@@ -15,3 +15,5 @@ export default function Home() {
     </main>
   );
 }
+
+export default Home;
