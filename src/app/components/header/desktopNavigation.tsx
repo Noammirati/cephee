@@ -20,11 +20,11 @@ function DesktopNavigation(props: Props) {
           <span className="">{link.label}</span>
           {hover && (
             <Image
-              className="absolute top-[-75%] left-0 z-[-1]"
+              className="absolute top-[-50%] left-1/2 translate-x-[-50%] z-[-1]"
               src="/stars.png"
               alt="background image"
-              width={233}
-              height={200}
+              width={100}
+              height={100}
             />
           )}
         </Link>
