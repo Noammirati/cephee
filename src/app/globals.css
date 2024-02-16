@@ -3,18 +3,26 @@
 @tailwind utilities;
 
 :root {
+  --color-space-cadet: #1d204d;
   --color-indigo-dye: #1a4a79;
+  --color-violet-blue: #444f9f;
   --color-carolina-blue: #6da7ce;
   --color-gold: #d6b551;
   --color-pearl: #e9dcc0;
-  --color-space-cadet: #1d204d;
-  --color-violet-blue: #444f9f;
   --color-lavender: #e1e1eb;
 
-  --color-txt: var(--color-space-cadet);
-  --color-background: var(--color-lavender);
-  --color-primary: var(--color-carolina-blue);
-  --color-accent: var(--color-gold);
+  --color-primary-800: var(--color-space-cadet);
+  --color-primary-700: var(--color-indigo-dye);
+  --color-primary-600: var(--color-violet-blue);
+  --color-primary-500: var(--color-carolina-blue);
+  --color-primary-300: var(--color-lavender);
+  --color-secondary-500: var(--color-gold);
+  --color-secondary-300: var(--color-pearl);
+
+  --color-txt: var(--color-primary-800);
+  --color-background: var(--color-primary-300);
+  --color-primary: var(--color-primary-500);
+  --color-accent: var(--color-secondary-500);
 
   --fs-100: clamp(0.65rem, calc(0.76rem + 0.03vw), 0.57rem);
   --fs-200: clamp(0.78rem, calc(0.84rem + 0.05vw), 0.75rem);
@@ -72,12 +80,47 @@ body {
 
 .bg-primary {
   background-color: var(--color-primary);
-  color: var(--color-lavender);
+  color: var(--color-primary-300);
 }
 
 .bg-secondary {
-  background-color: var(--color-accent);
-  color: var(--color-space-cadet);
+  background-color: var(--color-secondary-500);
+  color: var(--color-primary-800);
+}
+
+.button-primary,
+.button-secondary {
+  --bg: var(--color-primary-800);
+  --txt: var(--color-primary-300);
+  --accent: var(--color-primary-600);
+  padding-inline: 1em;
+  padding-block: 0.5em;
+  border-radius: 999px;
+  background-color: var(--bg);
+  color: var(--txt);
+  box-shadow: var(--accent) 0.25em 0.25em;
+  transition: 100ms linear;
+  outline: solid var(--accent) 0.25em;
+  outline-offset: -0.125em;
+}
+
+.button-secondary {
+  --bg: var(--color-primary-300);
+  --txt: var(--color-primary-600);
+  --accent: var(--color-primary-600);
+}
+
+.button-primary:hover,
+.button-secondary:hover {
+  box-shadow: var(--accent) 0.125em 0.125em;
+  transform: translateY(00.125em);
+}
+
+.dropdown-items {
+  top: 0;
+  left: 100%;
+  width: fit-content;
+  white-space: nowrap;
 }
 
 .content-grid {

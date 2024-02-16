@@ -1,8 +1,10 @@
 "use client";
 
 import { useLayoutEffect, useState } from "react";
-import DesktopNavigation from "./desktopNavigation";
-import MobileNavigation from "./mobileNavigation";
+import DesktopNavigation from "./DesktopNavigation";
+import MobileNavigation from "./MobileNavigation";
+import NavWithCTA from "./navigation/NavWithCTA";
+import Navbar from "./navigation/dropdownMenu/Navbar";
 
 function Header() {
   const [isMobile, setIsMobile] = useState(true);
@@ -17,44 +19,14 @@ function Header() {
     return () => window.removeEventListener("resize", updateSize);
   }, [setIsMobile]);
 
-  const links = [
-    {
-      href: "#",
-      label: "à propos",
-    },
-    {
-      href: "#",
-      label: "événement",
-    },
-    {
-      href: "#",
-      label: "boutique",
-    },
-    {
-      href: "#",
-      label: "les artistes",
-    },
-    {
-      href: "#",
-      label: "formulaires artistes",
-    },
-    {
-      href: "#",
-      label: "Nous aider",
-    },
-    {
-      href: "#",
-      label: "Nous contacter",
-    },
-  ];
-
   return (
-    <header className="w-full p-2 bg-primary">
-      {isMobile ? (
+    <header className="w-full p-2">
+      {/* {isMobile ? (
         <MobileNavigation links={links} />
       ) : (
         <DesktopNavigation links={links} />
-      )}
+      )} */}
+      <Navbar />
     </header>
   );
 }
