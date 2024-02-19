@@ -34,56 +34,14 @@ export const menuData = {
         {
           urlTo: "#",
           label: "Tous les événements",
-          submenu: [
-            {
-              urlTo: "#",
-              label: "Tous les événements 1",
-            },
-            {
-              urlTo: "#",
-              label: "Tous les événements 1",
-              submenu: [
-                {
-                  urlTo: "#",
-                  label: "Tous les événements 11",
-                },
-                {
-                  urlTo: "#",
-                  label: "Tous les événements 12",
-                },
-                {
-                  urlTo: "#",
-                  label: "Tous les événements 13",
-                },
-              ],
-            },
-            {
-              urlTo: "#",
-              label: "Le dimanche",
-            },
-          ],
         },
         {
           urlTo: "#",
           label: "Les goûters",
-          submenu: [
-            {
-              urlTo: "#",
-              label: "Les goûters 1",
-            },
-            {
-              urlTo: "#",
-              label: "Les goûters 2",
-            },
-            {
-              urlTo: "#",
-              label: "Les goûters 3",
-            },
-          ],
         },
         {
           urlTo: "#",
-          label: "Le dimanche",
+          label: "Les goûters",
         },
       ],
     },

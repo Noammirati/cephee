@@ -3,7 +3,6 @@
 import { useLayoutEffect, useState } from "react";
 import DesktopNavigation from "./DesktopNavigation";
 import MobileNavigation from "./MobileNavigation";
-import NavWithCTA from "./navigation/NavWithCTA";
 import Navbar from "./navigation/dropdownMenu/Navbar";
 
 function Header() {
