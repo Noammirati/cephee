@@ -28,20 +28,24 @@ export const menuData = {
       label: "À propos",
     },
     {
-      urlTo: "#",
+      urlTo: "",
       label: "Événements",
       submenu: [
         {
           urlTo: "#",
-          label: "Tous les événements",
+          label: "Les événements",
         },
         {
           urlTo: "#",
-          label: "Les goûters",
+          label: "Le prochain marché",
         },
         {
           urlTo: "#",
-          label: "Les goûters",
+          label: "Les goûters de Céphée",
+        },
+        {
+          urlTo: "#",
+          label: "Les artistes du dimanche",
         },
       ],
     },

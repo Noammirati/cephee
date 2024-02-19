@@ -6,7 +6,7 @@ import { NavbarContext } from "./NavbarContext";
 
 interface Props {
   item: IMenuItemNavigation;
-  id: any;
+  id: number;
 }
 
 function MenuItem(props: Props) {

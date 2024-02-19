@@ -3,7 +3,7 @@
 import { useLayoutEffect, useState } from "react";
 import DesktopNavigation from "./DesktopNavigation";
 import MobileNavigation from "./MobileNavigation";
-import Navbar from "./navigation/dropdownMenu/Navbar";
+import Navbar from "./navigation/Navbar";
 
 function Header() {
   const [isMobile, setIsMobile] = useState(true);
