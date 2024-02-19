@@ -35,46 +35,42 @@ function MenuItem(props: Props) {
           onMouseEnter={() => setHover(true)}
           onMouseLeave={() => setHover(false)}
         >
-          {item.submenu && (
-            <>
-              <span
-                className="flex items-center"
-                role="button"
-                aria-haspopup="menu"
-                aria-expanded={isOpen() ? "true" : "false"}
-                onClick={() => handleClick()}
-              >
-                {item.label}
-                <Image
-                  className={hover ? "visible" : "invisible"}
-                  src="/dropdown.svg"
-                  alt="prout"
-                  height={18}
-                  width={18}
-                />
-              </span>
-              <ul
-                className={`dropdown ${
-                  navContext.level > 0 ? "dropdown-items" : ""
-                } ${isOpen() ? "absolute" : "hidden"}`}
-              >
-                <NavbarContext.Provider
-                  value={{
-                    level: navContext.level + 1,
-                    tabOpen: isOpen() ? tabOpen : null,
-                    handleTab: (tab: number | null) => setTabOpen(tab),
-                  }}
-                >
-                  {item.submenu.map((item, index) => (
-                    <MenuItem item={item} key={index} id={index} />
-                  ))}
-                </NavbarContext.Provider>
-              </ul>
-            </>
-          )}
+          <span
+            className="flex items-center"
+            role="button"
+            aria-haspopup="menu"
+            aria-expanded={isOpen() ? "true" : "false"}
+            onClick={() => handleClick()}
+          >
+            {item.label}
+            <Image
+              className={hover ? "visible" : "invisible"}
+              src="/dropdown.svg"
+              alt="Dropdown menu icon"
+              height={18}
+              width={18}
+            />
+          </span>
+          <ul
+            className={`dropdown ${
+              navContext.level > 0 ? "dropdown-items" : ""
+            } ${isOpen() ? "absolute" : "hidden"}`}
+          >
+            <NavbarContext.Provider
+              value={{
+                level: navContext.level + 1,
+                tabOpen: isOpen() ? tabOpen : null,
+                handleTab: (tab: number | null) => setTabOpen(tab),
+              }}
+            >
+              {item.submenu.map((item, index) => (
+                <MenuItem item={item} key={index} id={index} />
+              ))}
+            </NavbarContext.Provider>
+          </ul>
         </li>
       ) : (
-        <li>
+        <li className="MenuItem">
           <Link href={item.urlTo}>{item.label}</Link>
         </li>
       )}

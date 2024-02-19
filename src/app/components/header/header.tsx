@@ -1,8 +1,7 @@
 "use client";
 
 import { useLayoutEffect, useState } from "react";
-import DesktopNavigation from "./DesktopNavigation";
-import MobileNavigation from "./MobileNavigation";
+import MobileNavigation from "./navigation/MobileNavigation";
 import Navbar from "./navigation/Navbar";
 
 function Header() {
@@ -19,13 +18,8 @@ function Header() {
   }, [setIsMobile]);
 
   return (
-    <header className="w-full p-2">
-      {/* {isMobile ? (
-        <MobileNavigation links={links} />
-      ) : (
-        <DesktopNavigation links={links} />
-      )} */}
-      <Navbar />
+    <header className="w-full px-2 py-8 bg-primary">
+      {isMobile ? <MobileNavigation /> : <Navbar />}
     </header>
   );
 }

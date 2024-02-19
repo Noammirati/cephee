@@ -15,8 +15,8 @@ function Navbar() {
         handleTab: (tab: number | null) => setTabOpen(tab),
       }}
     >
-      <nav className="Navbar flex w-full items-start justify-between fs-300">
-        <ul className="flex w-full items-start justify-start gap-12 pt-4">
+      <nav className="Navbar flex w-full items-center justify-between fs-300">
+        <ul className="flex w-full items-center justify-start gap-12">
           {menuData.navigation?.map((item, index) => {
             return <MenuItem item={item} key={index} id={index} />;
           })}
