@@ -17,7 +17,7 @@ function MenuItem(props: Props) {
   const navContext = useContext(NavbarContext);
   const [tabOpen, setTabOpen]: [number | null, Function] = useState(null);
   const [displaySubmenu, setDisplaySubmenu] = useState(false);
-  let ref = useRef();
+  let ref = useRef<HTMLLIElement>(null);
 
   const handleClick = () => {
     const open = isOpen();
@@ -53,7 +53,7 @@ function MenuItem(props: Props) {
   }, [displaySubmenu, navContext]);
 
   return (
-    <li className={`MenuItem ${styles.MenuItem}`}>
+    <li className={`MenuItem ${styles.MenuItem}`} ref={ref}>
       {item.submenu ? (
         <>
           <span
