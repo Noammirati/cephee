@@ -1,8 +1,11 @@
+"use client";
+
 import { IMenuItemNavigation } from "./menuData";
 import Link from "next/link";
 import Image from "next/image";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { NavbarContext } from "./NavbarContext";
+import styles from "./navigation.module.css";
 
 interface Props {
   item: IMenuItemNavigation;
@@ -14,29 +17,47 @@ function MenuItem(props: Props) {
   const navContext = useContext(NavbarContext);
   const [tabOpen, setTabOpen]: [number | null, Function] = useState(null);
   const [displaySubmenu, setDisplaySubmenu] = useState(false);
-  const [hover, setHover] = useState(false);
+  let ref = useRef();
 
   const handleClick = () => {
     const open = isOpen();
-    navContext.handleTab(open ? null : props.id);
+    navContext.setTabId(open ? null : props.id);
     setTabOpen(open ? tabOpen : null);
     setDisplaySubmenu(!open);
   };
 
   const isOpen = () => {
-    return displaySubmenu && props.id === navContext.tabOpen;
+    return displaySubmenu && props.id === navContext.tabId;
   };
 
+  useEffect(() => {
+    const handler = (event: { target: any }) => {
+      if (
+        displaySubmenu &&
+        ref.current &&
+        !ref.current.contains(event.target)
+      ) {
+        setDisplaySubmenu(false);
+        navContext.setTabId(null);
+        setTabOpen(null);
+        setDisplaySubmenu(false);
+      }
+    };
+    document.addEventListener("mousedown", handler);
+    document.addEventListener("touchstart", handler);
+    return () => {
+      // Cleanup the event listener
+      document.removeEventListener("mousedown", handler);
+      document.removeEventListener("touchstart", handler);
+    };
+  }, [displaySubmenu, navContext]);
+
   return (
-    <>
+    <li className={`MenuItem ${styles.MenuItem}`} ref={ref}>
       {item.submenu ? (
-        <li
-          className="MenuItem"
-          onMouseEnter={() => setHover(true)}
-          onMouseLeave={() => setHover(false)}
-        >
+        <>
           <span
-            className="flex items-center"
+            className={styles.MenuItem__label}
             role="button"
             aria-haspopup="menu"
             aria-expanded={isOpen() ? "true" : "false"}
@@ -44,7 +65,7 @@ function MenuItem(props: Props) {
           >
             {item.label}
             <Image
-              className={hover ? "visible" : "invisible"}
+              className={styles.MenuItem__dropdownIcon}
               src="/dropdown.svg"
               alt="Dropdown menu icon"
               height={18}
@@ -52,15 +73,22 @@ function MenuItem(props: Props) {
             />
           </span>
           <ul
-            className={`dropdown ${
-              navContext.level > 0 ? "dropdown-items" : ""
-            } ${isOpen() ? "absolute" : "hidden"}`}
+            className={`${styles.MenuItem__dropdownTab} ${
+              navContext.level === 0
+                ? styles.MenuItem__dropdownTab_under
+                : styles.MenuItem__dropdownTab_nextTo
+            }
+            ${
+              isOpen()
+                ? styles.MenuItem__dropdownTab_open
+                : styles.MenuItem__dropdownTab_close
+            }`}
           >
             <NavbarContext.Provider
               value={{
                 level: navContext.level + 1,
-                tabOpen: isOpen() ? tabOpen : null,
-                handleTab: (tab: number | null) => setTabOpen(tab),
+                tabId: isOpen() ? tabOpen : null,
+                setTabId: (tabId) => setTabOpen(tabId),
               }}
             >
               {item.submenu.map((item, index) => (
@@ -68,13 +96,11 @@ function MenuItem(props: Props) {
               ))}
             </NavbarContext.Provider>
           </ul>
-        </li>
+        </>
       ) : (
-        <li className="MenuItem">
-          <Link href={item.urlTo}>{item.label}</Link>
-        </li>
+        <Link href={item.urlTo}>{item.label}</Link>
       )}
-    </>
+    </li>
   );
 }
 
