@@ -9,7 +9,7 @@ function Header() {
 
   useLayoutEffect(() => {
     function updateSize() {
-      const isMobileQuery = window.matchMedia("(max-width: 35em)");
+      const isMobileQuery = window.matchMedia("(max-width: 800px)");
       setIsMobile(isMobileQuery.matches);
     }
     window.addEventListener("resize", updateSize);
@@ -18,7 +18,7 @@ function Header() {
   }, [setIsMobile]);
 
   return (
-    <header className="w-full p-3 bg-primary">
+    <header className="w-full">
       {isMobile ? <MobileNavigation /> : <Navbar />}
     </header>
   );

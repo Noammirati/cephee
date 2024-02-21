@@ -26,10 +26,12 @@ function MobileNavigation() {
           className="flex flex-row justify-start"
           onClick={(e) => closeMenu()}
         >
-          <div className="flex flex-col items-center justify-center gap-2">
-            <div className={`${farmhouse.className} fs-400`}>Céphée</div>
-          </div>
-          <Image src="/circle-icon.png" width={100} height={100} alt="Céphée" />
+          <Image
+            src="/icons/logo-white.png"
+            width={100}
+            height={100}
+            alt="Céphée"
+          />
         </Link>
         <span className="sr-only">Menu</span>
         <span className="z-50" onClick={(e) => toggleMenu()}>
