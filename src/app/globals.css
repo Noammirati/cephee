@@ -24,15 +24,15 @@
   --color-primary: var(--color-primary-500);
   --color-accent: var(--color-secondary-500);
 
-  --fs-100: clamp(0.65rem, calc(0.76rem + 0.03vw), 0.57rem);
-  --fs-200: clamp(0.78rem, calc(0.84rem + 0.05vw), 0.75rem);
-  --fs-300: clamp(0.94rem, calc(0.92rem + 0.08vw), 0.98rem);
-  --fs-400: clamp(1.13rem, calc(1.06rem + 0.33vw), 1.31rem);
-  --fs-500: clamp(1.35rem, calc(1.21rem + 0.69vw), 1.75rem);
-  --fs-600: clamp(1.62rem, calc(1.37rem + 1.24vw), 2.33rem);
-  --fs-700: clamp(1.94rem, calc(1.54rem + 2.03vw), 3.11rem);
-  --fs-800: clamp(2.33rem, calc(1.7rem + 3.15vw), 4.14rem);
-  --fs-900: clamp(2.8rem, calc(1.85rem + 4.74vw), 5.52rem);
+  --fs-100: clamp(0.12rem, calc(0.12rem + 0.15vw), 0.15rem);
+  --fs-200: clamp(0.2rem, calc(0.2rem + 0.24vw), 0.24rem);
+  --fs-300: clamp(0.33rem, calc(0.33rem + 0.04vw), 0.4rem);
+  --fs-400: clamp(0.54rem, calc(0.54rem + 0.625vw), 0.625rem);
+  --fs-500: clamp(0.875rem, calc(0.875rem + 1vw), 1rem);
+  --fs-600: clamp(1rem, calc(1.42rem + 1.62vw), 1.62rem);
+  --fs-700: clamp(1.62rem, calc(2.3rem + 2.6vw), 2.6rem);
+  --fs-800: clamp(2.6rem, calc(3.72rem + 4.25vw), 4.25rem);
+  --fs-900: clamp(4.25rem, calc(6rem + 6.89vw), 6.89rem);
 }
 
 .fs-100 {
@@ -74,7 +74,7 @@
 body {
   color: var(--color-txt);
   background-color: var(--color-background);
-  font-size: var(--fs-400);
+  font-size: var(--fs-500);
   line-height: 1.6;
 }
 
@@ -114,13 +114,6 @@ body {
 .button-secondary:hover {
   box-shadow: var(--accent) 0.125em 0.125em;
   transform: translateY(00.125em);
-}
-
-.dropdown-items {
-  top: 0;
-  left: 100%;
-  width: fit-content;
-  white-space: nowrap;
 }
 
 .content-grid {

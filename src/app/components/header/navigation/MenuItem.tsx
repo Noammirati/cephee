@@ -53,7 +53,7 @@ function MenuItem(props: Props) {
   }, [displaySubmenu, navContext]);
 
   return (
-    <li className={`MenuItem ${styles.MenuItem}`} ref={ref}>
+    <li className={`MenuItem ${styles.MenuItem}`}>
       {item.submenu ? (
         <>
           <span
@@ -98,7 +98,9 @@ function MenuItem(props: Props) {
           </ul>
         </>
       ) : (
-        <Link href={item.urlTo}>{item.label}</Link>
+        <Link className={styles.MenuItem__label} href={item.urlTo}>
+          {item.label}
+        </Link>
       )}
     </li>
   );

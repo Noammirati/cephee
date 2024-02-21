@@ -11,9 +11,9 @@ function MenuItemCTA(props: Props) {
     <li
       className={`MenuItem ${
         item.CTAType === EMenuItemCTA.Primary
-          ? "button-primary mx-2"
+          ? "button-primary"
           : item.CTAType === EMenuItemCTA.Secondary
-          ? "button-secondary mx-2"
+          ? "button-secondary"
           : ""
       }`}
     >

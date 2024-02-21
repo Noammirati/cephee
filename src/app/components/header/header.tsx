@@ -18,7 +18,7 @@ function Header() {
   }, [setIsMobile]);
 
   return (
-    <header className="w-full px-2 py-8 bg-primary">
+    <header className="w-full p-3 bg-primary">
       {isMobile ? <MobileNavigation /> : <Navbar />}
     </header>
   );
